@@ -1,10 +1,13 @@
 
 import axios from 'axios';
+
+interface ResponseProps {
+  data: any
+}
  
-export const fetchPokeApi = async(limit: number) => {
+export const fetchPokeApi  = async(limit: number): Promise<ResponseProps> => {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=10&limit=${limit}`);
   const data = await res.json();
-  console.log(data)
   return { data: data } 
 }
 
