@@ -18,3 +18,16 @@ export const getAxiosPokeApi = async(limit: number) => {
   console.log(data)
   return { data: data } 
 }
+
+
+export const getLocalApi = async() => {
+  const res = await fetch(`http://localhost:3001/api`);
+  const data = await res.json();
+  return { data: data } 
+}
+
+export const getAxiosLocalApi = async() => {
+  const res = await axios.get(`http://localhost:3001/api`);
+  const data = res.data;
+  return { data: data } 
+}
