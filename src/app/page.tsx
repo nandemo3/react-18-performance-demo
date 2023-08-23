@@ -1,27 +1,23 @@
 import { getLocalApi, getAxiosLocalApi } from "./api"
-import Children from "./children"
-
-// let data: any;
-  // getLocalApi().then((res) => {
-  //   data = res.data
-  // })
-  // // getLocalApi()
 
 export default async function Home() {
-  const { data } = await getLocalApi()
-  // const { data } = await getAxiosLocalApi()
+  const data1 = await getLocalApi("Kobayashi")
+  const data2 = await getLocalApi("Kobayashi")
+  // const data1 = await getAxiosLocalApi("Kobayashi")
+  // const data2 = await getAxiosLocalApi("Kobayashi")
 
   return (
     <main>
       <div>
-        <h3>Home</h3>
-        <ul>
-          {data.map((d:any, index: number) => (
-            <li key={index}>{d.name}</li>
-          ))}
-        </ul>
+        <h3>Request1</h3>
+        <div>{data1.message}</div>
+        <div>{data1.date}</div>
       </div>
-      <Children />
+      <div>
+        <h3>Request2</h3>
+        <div>{data2.message}</div>
+        <div>{data2.date}</div>
+      </div>
     </main> 
   )
 }
