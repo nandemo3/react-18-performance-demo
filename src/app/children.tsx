@@ -3,18 +3,18 @@
 import React, { useEffect, useState, useTransition } from "react";
 import JsonData from "./data.json"
 
- function List({searchQuery}: any) {
+ function List({keyword}: any) {
   //@ts-ignore
   const jsonData: any[] = JsonData
   const [data, setData] = useState<any[]>(jsonData);
 
   useEffect(() => {
-    if(!searchQuery) return 
+    if(!keyword) return 
     const filterArry = jsonData.filter((d: any) => {
-      return d.repo.name.includes(searchQuery);
+      return d.repo.name.includes(keyword);
     })
     setData(filterArry)
-  }, [searchQuery])
+  }, [keyword])
 
   return (
     <ul>
@@ -25,9 +25,9 @@ import JsonData from "./data.json"
   )
  }
 
-export default function SearchCities() {
+export default function Children() {
   const [text, setText] = useState("");
-  const [searchQuery, setSearchQuery] = useState(text);
+  const [keyword, setKeyword] = useState(text);
   const [isPending, startTransition] = useTransition();
 
    return (    
@@ -36,12 +36,12 @@ export default function SearchCities() {
               type="text" 
               value={text}
               onChange={(e) => {
-                 setText(e.target.value)
-                 startTransition(() => {
-                    setSearchQuery(e.target.value)
-                 })
+                setText(e.target.value)
+                startTransition(() => {
+                  setKeyword(e.target.value)
+                })
              }}  />      
-          <List searchQuery={searchQuery} />    
+          <List keyword={keyword} />    
       </main>  
      );
 };
